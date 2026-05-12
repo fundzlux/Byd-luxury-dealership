@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Selection | BYD Elite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bg: #0a0a0a;
+            --card-bg: #111;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            padding: 40px 5%;
+        }
+
+        .cart-header {
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-decoration: none;
+        }
+
+        .cart-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cart-item {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .cart-item:hover {
+            border-color: var(--gold);
+        }
+
+        .item-detail {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .item-img {
+            width: 80px;
+            height: 60px;
+            background: #222;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .summary-box {
+            background: #111;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border-top: 3px solid var(--gold);
+        }
+
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--gold);
+            color: black;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #b8860b;
+            transform: scale(1.02);
+        }
+
+        .empty-msg {
+            text-align: center;
+            padding: 100px 0;
+            color: #555;
+        }
+
+        .back-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <a href="dashboard.html" class="brand-logo">BYD ELITE</a>
+            <a href="dashboard.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Showroom</a>
+        </div>
+
+        <h2>Current Selections</h2>
+        
+        <div id="cart-list">
+            </div>
+
+        <div id="summary-area" class="summary-box" style="display: none;">
+            <div class="flex-row">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+            </div>
+            <div class="flex-row">
+                <span>Delivery & Handling</span>
+                <span style="color: #00ff00;">Complimentary</span>
+            </div>
+            <hr style="border: 0.5px solid #222; margin: 20px 0;">
+            <div class="flex-row" style="font-size: 22px; font-weight: bold;">
+                <span>Total Investment</span>
+                <span id="total-price" style="color: var(--gold);">$0</span>
+            </div>
+            <button class="checkout-btn" onclick="proceedToPayment()">Confirm Selection & Checkout</button>
+        </div>
+
+        <div id="empty-state" class="empty-msg">
+            <i class="fas fa-shopping-cart fa-4x" style="margin-bottom: 20px;"></i>
+            <h3>Your garage is currently empty.</h3>
+            <p>Go back to the showroom to select your BYD vehicle.</p>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve data from Session Storage
+        let cart = JSON.parse(sessionStorage.getItem('byd_cart')) || [];
+
+        function displayCart() {
+            const list = document.getElementById('cart-list');
+            const summary = document.getElementById('summary-area');
+            const empty = document.getElementById('empty-state');
+            
+            if (cart.length === 0) {
+                list.innerHTML = '';
+                summary.style.display = 'none';
+                empty.style.display = 'block';
+                return;
+            }
+
+            empty.style.display = 'none';
+            summary.style.display = 'block';
+            list.innerHTML = '';
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <div class="item-detail">
+                            <img src="${item.img}" class="item-img" alt="BYD">
+                            <div>
+                                <h3 style="margin: 0;">${item.name}</h3>
+                                <small style="color: #666;">Luxury Edition | EV</small>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 30px;">
+                            <span style="color: var(--gold); font-weight: bold;">$${item.price.toLocaleString()}</span>
+                            <button class="remove-btn" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('subtotal').innerText = `$${total.toLocaleString()}`;
+            document.getElementById('total-price').innerText = `$${total.toLocaleString()}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            sessionStorage.setItem('byd_cart', JSON.stringify(cart));
+            displayCart();
+        }
+
+        function proceedToPayment() {
+            // Optional: You could save final total to session storage here
+            window.location.href = "payment.html";
+        }
+
+        // Initialize view
+        displayCart();
+    </script>
+</body>
+</html>

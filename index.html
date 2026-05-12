@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYD Luxury | Revolutionize Your Drive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F5E0A3 50%, #B8860B 100%);
+            --button-gold: #c5a059;
+            --bg-dark: #121212;
+            --card-bg: #1e1e1e;
+            --text-gray: #a0a0a0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 5%;
+            gap: 15px;
+            background: rgba(18, 18, 18, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text-gray);
+            color: white;
+            padding: 8px 24px;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 8px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Hero Carousel Placeholder */
+        .hero-section {
+            text-align: center;
+            padding: 60px 5%;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--button-gold);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Content Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 50px 5%;
+            align-items: start;
+        }
+
+        h2 {
+            color: var(--button-gold);
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        /* Selection Grid */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .car-slot {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 8px;
+            aspect-ratio: 1/1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .car-slot:hover {
+            border-color: var(--button-gold);
+        }
+
+        .view-btn {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* Sidebar/Auth Form */
+        .signup-box {
+            border: 1px solid var(--button-gold);
+            padding: 30px;
+            border-radius: 8px;
+            background: rgba(30, 30, 30, 0.5);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--gold-gradient);
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        /* Services List */
+        .services {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .services ul {
+            list-style: none;
+            padding: 0;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .services li::before {
+            content: "•";
+            color: var(--button-gold);
+            margin-right: 8px;
+        }
+
+        footer {
+            border-top: 1px solid #333;
+            padding: 40px 5%;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-gray);
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            .main-container { grid-template-columns: 1fr; }
+            .hero-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="login.html" class="btn-outline">Login</a>
+        <a href="signup.html" class="btn-gold">SignUp</a>
+    </nav>
+
+    <section class="hero-section">
+        <h1 class="hero-title">Revolutionize Your Drive.<br>Discover the Future of Mobility with BYD.</h1>
+        <div class="hero-image-container">
+            <img src="asset/WhatsApp Image 2026-05-11 at 05.19.06.jpeg" alt="Luxury Car Hero">
+        </div>
+    </section>
+
+    <div class="main-container">
+        <div>
+            <h2>Our Premium Selection</h2>
+            <div class="selection-grid">
+                <div class="car-slot"><button class="view-btn">View Details</button></div>
+                <div class="car-slot"><button class="view-btn">View Details</button></div>
+                <div class="car-slot"><button class="view-btn">View Details</button></div>
+                <div class="car-slot"><button class="view-btn">View Details</button></div>
+                <div class="car-slot"><button class="view-btn">View Details</button></div>
+                <div class="car-slot"><button class="view-btn">View Details</button></div>
+            </div>
+
+            <div style="margin-top: 50px;">
+                <h2>Exclusive Services</h2>
+                <div class="services">
+                    <ul>
+                        <li>Car Hire</li>
+                        <li>Customer Services</li>
+                    </ul>
+                    <ul>
+                        <li>Exclusive Services</li>
+                        <li>Driver Services</li>
+                    </ul>
+                    <ul>
+                        <li>Booking Center</li>
+                        <li>Car Training</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="signup-box">
+                <h2>Join the Elite Drivers Club - Sign up now.</h2>
+                <form action="drivers-club.html">
+                    <div class="input-group"><input type="text" placeholder="First Name"></div>
+                    <div class="input-group"><input type="text" placeholder="Last Name"></div>
+                    <div class="input-group"><input type="email" placeholder="Email"></div>
+                    <div class="input-group"><input type="password" placeholder="Password"></div>
+                    <button type="submit" class="form-btn">Create Account and Go to drivers club</button>
+                </form>
+                <p style="font-size: 12px; margin-top: 15px; text-align: right; color: var(--button-gold);">
+                    <i class="fas fa-arrow-right"></i> Instant access to the drivers club
+                </p>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h2>Why Choose Chinese Engineering</h2>
+                <p style="color: var(--text-gray); font-size: 14px; line-height: 1.8;">
+                    Experience the pinnacle of innovation and sustainable luxury. Our vehicles represent a perfect fusion of advanced AI technology, long-range battery efficiency, and world-class craftsmanship designed for those who lead.
+                </p>
+                <button class="btn-gold" style="margin-top: 20px;">View Our Complete Inventory</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <strong>Contact Info</strong><br>
+            Elite Luxury Brand<br>
+            wangchuanfa395@gmail.com
+        </div>
+        <div style="text-align: right;">
+            <i class="fab fa-facebook"></i> &nbsp;
+            <i class="fab fa-instagram"></i> &nbsp;
+            <i class="fab fa-tiktok"></i><br><br>
+            © 2026 BYD Luxury. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

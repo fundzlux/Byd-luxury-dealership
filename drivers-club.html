@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Drivers Club | BYD Global</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --deep-carbon: #0f0f0f;
+            --electric-gold: #ffcc33;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            /* Unique Carbon Fiber Texture Background */
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%),
+                        url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            color: white;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .club-container {
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .earnings-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: black;
+            padding: 10px 25px;
+            font-weight: 900;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .policy-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #ff4444;
+            margin: 30px 0;
+        }
+
+        .policy-box h3 {
+            color: #ff4444;
+            text-transform: uppercase;
+            margin-top: 0;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .rules-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .rules-list li::before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .application-footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .entrance-fee {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .btn-apply {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--gold), #8a6d3b);
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-apply:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .secure-tag {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="club-container">
+        <div class="header-section">
+            <i class="fas fa-crown fa-3x" style="color: var(--gold); margin-bottom: 20px;"></i>
+            <h1>Elite Drivers Club</h1>
+            <p>Join the world's most exclusive network of professional BYD pilots.</p>
+            <div class="earnings-badge">EARN $200 / HOUR</div>
+        </div>
+
+        <div class="content-body">
+            <h3>Essential Details</h3>
+            <p>The Elite Drivers Club is not just a job; it is a prestige status. Members are granted priority access to new fleet releases, private track events, and a guaranteed hourly rate of $200 for corporate chauffeuring and performance testing.</p>
+            
+            <div class="policy-box">
+                <h3>Strict Club Policy & Rules</h3>
+                <ul class="rules-list">
+                    <li><strong>Professional Integrity:</strong> All members must maintain a clean driving record. Any traffic violation results in immediate expulsion without refund.</li>
+                    <li><strong>Non-Disclosure:</strong> Drivers will have access to prototype BYD technology. A strict NDA is signed upon joining. Leakage of tech results in legal action.</li>
+                    <li><strong>Maintenance Standard:</strong> Assigned vehicles must be kept in showroom condition at all times.</li>
+                    <li><strong>Commitment:</strong> Members must complete a minimum of 10 hours per week to maintain active status.</li>
+                    <li><strong>Entrance Fee:</strong> The $8,000 joining fee is non-refundable and covers insurance, uniform, and advanced certification.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="application-footer">
+            <div class="entrance-fee">LIFETIME MEMBERSHIP FEE: <strong>$8,000.00</strong></div>
+            <a href="payment.html" class="btn-apply" onclick="setDriverSession()">Apply & Pay Securely</a>
+            <div class="secure-tag">
+                <i class="fas fa-lock"></i> 256-BIT ENCRYPTED PAYMENT GATEWAY
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setDriverSession() {
+            // This ensures the payment page knows the user is paying the $8000 fee
+            const driverPayment = [{ name: "Elite Drivers Club Membership", price: 8000, img: "club-logo.png" }];
+            sessionStorage.setItem('byd_cart', JSON.stringify(driverPayment));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+login.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYD Elite | Create Your Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            /* Luxury Palette: Onyx Black and 24-Karat Gold */
+            --onyx: #0A0A0A; /* */
+            --gold: #C69B3C; /* */
+            --charcoal: #1E1E1E;
+            --white: #F4F4F4;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--onyx);
+            /* Replace the URL with a high-quality BYD vehicle image */
+            background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), 
+                              url('https://images.unsplash.com/photo-1617788130012-02ba710ee514?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .signup-card {
+            background: rgba(30, 30, 30, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--gold);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: transparent;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            outline: none;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: var(--onyx);
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 10px;
+        }
+
+        .btn-register:hover {
+            background: #E5B95B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(198, 155, 60, 0.4);
+        }
+
+        .footer-link {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .footer-link a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <div class="brand-logo">BYD ELITE</div>
+        <h2>THE FUTURE OF MOBILITY</h2>
+        
+        <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="input-box">
+                <input type="text" id="fullname" placeholder="FULL NAME" required>
+            </div>
+            <div class="input-box">
+                <input type="email" id="email" placeholder="EMAIL ADDRESS" required>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="PASSWORD" required>
+            </div>
+            
+            <button type="submit" class="btn-register">Access Exclusive Inventory</button>
+        </form>
+
+        <div class="footer-link">
+            Already a member? <a href="login.html">Sign In</a>
+        </div>
+    </div>
+
+    <script>
+        function handleSignup(event) {
+            event.preventDefault(); // Prevents page reload
+            
+            // Simple credential logic
+            const name = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (name && email && password.length >= 6) {
+                // In a real app, you would send this to a server
+                alert("Welcome to the Elite Club, " + name + "!");
+                window.location.href = "dashboard.html"; // Redirect to dashboard
+            } else {
+                alert("Please fulfill all requirements and use a password longer than 6 characters.");
+            }
+        }
+    </script>
+
+</body>
+</html>

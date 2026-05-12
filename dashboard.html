@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYD Luxury Dashboard | Exclusive Inventory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: #fff;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background: #000;
+            border-right: 1px solid var(--gold);
+            position: fixed;
+            padding: 40px 20px;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* Inventory Layout */
+        .content {
+            margin-left: 320px;
+            padding: 40px;
+            width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .car-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s ease;
+        }
+
+        .car-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .img-container {
+            height: 180px;
+            background: #111;
+            position: relative;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .price-label {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: #000;
+            padding: 5px 12px;
+            font-weight: 900;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .details {
+            padding: 20px;
+        }
+
+        .btn-cart {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-cart:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Floating Checkout Bar */
+        .checkout-bar {
+            position: fixed;
+            bottom: 30px;
+            left: 350px;
+            right: 50px;
+            background: rgba(0,0,0,0.9);
+            border: 1px solid var(--gold);
+            padding: 20px 40px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-checkout {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="brand">BYD ELITE</div>
+        <nav>
+            <div style="color: var(--gold); margin-bottom: 20px;"><i class="fas fa-th-large"></i> Inventory</div>
+            <div style="color: #555; margin-bottom: 20px;"><i class="fas fa-chart-line"></i> Analytics</div>
+            <div style="color: #555;"><i class="fas fa-headset"></i> Concierge</div>
+        </nav>
+    </div>
+
+    <div class="content">
+        <h1 style="color: var(--gold); margin-bottom: 30px;">GLOBAL SHOWROOM</h1>
+        
+        <div class="grid" id="carGrid">
+            </div>
+
+        <div style="height: 120px;"></div>
+    </div>
+
+    <div class="checkout-bar">
+        <div>
+            <span style="color: #888;">Items Selected:</span> <span id="count" style="color: var(--gold); font-weight: bold;">0</span>
+            <span style="margin-left: 20px; color: #888;">Investment:</span> <span id="total" style="color: var(--gold); font-weight: bold;">$0</span>
+        </div>
+        <button class="btn-checkout" onclick="proceedToPayment()">CHECKOUT NOW</button>
+    </div>
+
+    <script>
+        // Array containing your 12 uploaded files and requested prices
+        const inventory = [
+            { id: 1, name: "BYD Sealion 7", price: 14000, img: "image/WhatsApp Image 2026-05-12 at 02.36.09.jpeg" },
+            { id: 2, name: "BYD Dolphin Sport", price: 12000, img: "image/WhatsApp Image 2026-05-12 at 02.36.06.jpeg" },
+            { id: 3, name: "BYD Seal Performance", price: 13000, img: "image/WhatsApp Image 2026-05-12 at 02.36.07.jpeg" },
+            { id: 4, name: "BYD Atto 3 luxury", price: 15800, img: "image/WhatsApp Image 2026-05-12 at 02.36.08.jpeg" },
+            { id: 5, name: "TESLA", price: 23500, img: "image/WhatsApp Image 2026-05-12 at 02.36.09 (2).jpeg" },
+            { id: 6, name: "BYD E-series", price: 19000, img: "image/WhatsApp Image 2026-05-12 at 02.36.06 (1).jpeg" },
+            { id: 7, name: "TESLA", price: 14200, img: "image/WhatsApp Image 2026-05-12 at 02.36.09 (1).jpeg" },
+            { id: 8, name: "BYD Destroyer 05", price: 12000, img: "image/WhatsApp Image 2026-05-12 at 02.36.08 (1).jpeg" },
+            { id: 9, name: "BYD Frigate 07", price: 15000, img: "image/WhatsApp Image 2026-05-12 at 02.36.07.jpeg" },
+            { id: 10, name: "TESLA", price: 12000, img: "image/WhatsApp Image 2026-05-12 at 01.39.37.jpeg" },
+            { id: 11, name: "BYD Tang SUV", price: 13000, img: "image/WhatsApp Image 2026-05-12 at 02.52.42.jpeg" },
+            { id: 12, name: "TESLA", price: 24000, img: "image/WhatsApp Image 2026-05-12 at 02.36.10.jpeg" }
+        ];
+
+        // SESSION STORAGE LOGIC
+        let cart = JSON.parse(sessionStorage.getItem('byd_cart')) || [];
+
+        function render() {
+            const container = document.getElementById('carGrid');
+            inventory.forEach(car => {
+                container.innerHTML += `
+                    <div class="car-card">
+                        <div class="img-container">
+                            <span class="price-label">$${car.price.toLocaleString()}</span>
+                            <img src="${car.img}" alt="${car.name}">
+                        </div>
+                        <div class="details">
+                            <h3 style="margin: 0 0 10px 0;">${car.name}</h3>
+                            <p style="font-size: 12px; color: #666; margin-bottom: 20px;">Premium Chinese Engineering. Intelligence Redefined.</p>
+                            <button class="btn-cart" onclick="addToCart(${car.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            });
+            updateBar();
+        }
+
+        function addToCart(id) {
+            const car = inventory.find(item => item.id === id);
+            cart.push(car);
+            sessionStorage.setItem('byd_cart', JSON.stringify(cart)); // Save to session
+            updateBar();
+        }
+
+        function updateBar() {
+            document.getElementById('count').innerText = cart.length;
+            const sum = cart.reduce((acc, curr) => acc + curr.price, 0);
+            document.getElementById('total').innerText = "$" + sum.toLocaleString();
+        }
+
+        function proceedToPayment() {
+            if(cart.length === 0) return alert("Select a vehicle to proceed.");
+            window.location.href = "cart.html"; // Next step in the flow
+        }
+
+        render();
+    </script>
+</body>
+</html>
